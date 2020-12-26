@@ -1,0 +1,228 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+
+<!-- Welcome div -->
+<div class="home-section-div" style="margin-top: 40px;">
+  {% if request.user.is_authenticated %}
+  <div class="home-about">
+    <div>Welcome back <a href="/accounts/{{ request.user }}"><b>{{ request.user }}</b></a></div>
+    <span>Check out what's popular right now.</span>
+  </div>
+  {% else %}
+  <div class="home-about">
+    <div>Welcome to <b>StereoLog</b></div>
+    <span>Log, rate, review, and share your favorite albums.</span>
+  </div>
+  {% endif %}
+</div>
+<!-- Popular albums, reviews, lists, etc. divs -->
+<div class="home-section-div">
+  <div class="home-header">
+    <div class="header-left"">
+      <span>Popular Albums</span>
+    </div>
+    <div class="header-right">
+      <a href="/albums"><i>See more albums</i></a>
+    </div>
+  </div>
+  <div class="list-albums">
+    {% for album in popular_albums %}
+    <div class="list-albums-box">
+      <div class="albums-box-img">
+        <a href="/albums/{{ album.album_id }}" >
+          {% if album.cover_art_url %}
+          <img class="albums-img" src="{{ album.cover_art_url }}"/>
+          {% else %}
+          <div class="albums-img-empty"></div>
+          {% endif %}
+        </a>
+      </div>
+      <div class="albums-box-info">
+        <i>{{ album.album }}</i> by <a href="/artists/{{ album.artist_id }}">{{ album.artist }}</a>
+      </div>
+    </div>
+    {% endfor%}
+  </div>
+</div>
+<div class="home-section-div">
+  <div class="home-header">
+    <div class="header-left"">
+      <span>Popular Reviews</span>
+    </div>
+  </div>
+  <div class="reviews-wrapper">
+    {% for review in popular_reviews %}
+    <div class="review-div">
+      <div class="review-left">
+        <div class="albums-box-img">
+          <a href="/albums/{{ review.album_id }}">
+            <img src="{{ review.cover_art_url }}" class="albums-img"/>
+          </a>
+        </div>
+        <div class="albums-box-info">
+          <i>{{ review.album }}</i> by <a href="/artists/{{ review.artist_id }}">{{ review.artist }}</a>
+        </div>
+      </div>
+      <div class="review-right">
+        <div class="review-section-header">
+          <div class="header-left">
+            <span>Review by <a href="/accounts/{{ review.author }}" class="review-author">{{ review.author }}</a></span>
+          </div>
+          <div class="header-right">
+            <span>{{ review.date }}</span>
+          </div>
+        </div>
+        <div class="review-rating">
+          <div class="rating-left">
+            <!-- Review rating out of 5 stars -->
+            <div class="rating-rating">
+              {% if review.rating == "0.5" %}
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "1.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "1.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "2.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "2.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "3.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "3.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "4.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "4.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              {% elif review.rating == "5.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              {% endif %}
+            </div>
+            <div class="rating-like">
+              {% if review.like == "YES" %}
+              <i class="fas fa-thumbs-up"></i>
+              {% else %}
+              <i class="fas fa-thumbs-down"></i>
+              {% endif %}
+            </div>
+          </div>
+          <div class="rating-right">
+            <a href="/accounts/{{ review.author }}/reviews/{{ review.album_id }}"><i>See full review</i></a>
+          </div>
+        </div>
+        <div class="review-text">
+          {{ review.shorten }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="home-section-div">
+  <div class="home-header">
+    <div class="header-left"">
+      <span>Popular Lists</span>
+    </div>
+    <div class="header-right">
+      <a href="/lists"><i>See more lists</i></a>
+    </div>
+  </div>
+  <div class="list-lists">
+    {% for list in popular_lists %}
+    <div class="list-div">
+      <!-- Link for the list will be 5 album covers stacked (or empty "albums" if user has less than 5 albums in list) -->
+      <div class="list-albums-img">
+        <a href="/accounts/{{ list.author }}/lists/{{ list.title_slug }}">
+        {% for link in list.cover_art_urls %}
+          {% if forloop.counter == 1 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-1"/>
+            {% else %}
+              <div class="list-album-1-empty"></div>
+            {% endif %}
+          {% elif forloop.counter == 2 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-2"/>
+            {% else %}
+              <div class="list-album-2-empty"></div>
+            {% endif %}
+          {% elif forloop.counter == 3 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-3"/>
+            {% else %}
+              <div class="list-album-3-empty"></div>
+            {% endif %}
+          {% elif forloop.counter == 4 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-4"/>
+            {% else %}
+              <div class="list-album-4-empty"></div>
+            {% endif %}
+          {% else %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-5"/>
+            {% else %}
+              <div class="list-album-5-empty"></div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        </a>
+      </div>
+      <div class="list-info">
+        <span><a href="/accounts/{{ list.author }}/lists/{{ list.title_slug }}">{{ list.title }}</a></span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'lists/css/list_general.css'%}"/>
+
+<div class="page-header">
+  <h1>Lists</h1>
+</div>
+<!-- Hidden popup for creating a new list -->
+<div class="lists-create-div">
+  <div class="form-popup" id="createForm">
+    <div class="close-div">
+      <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+    </div>
+    <div class="form-popup-header">
+      <div class="header-left">
+        <span>New List</span>
+      </div>
+    </div>
+    <form action="/lists/" method="post" class="form-container" name="createForm">
+      {% csrf_token %}
+      <div class="form-title-div">
+      <span>Title</span>
+        <input type="text" name="list_title" id="list_title" maxlength="200" autocomplete="off"/>
+      </div>
+      <div class="form-description-div">
+        <span>Description</span>
+        <textarea type="text" name="list_description" id="list_description" maxlength="500" autocomplete="off"></textarea>
+      </div>
+      <div class="form-btn-div">
+        <button type="submit" id="createList">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Display button to create a new list (if logged in) and display most recent lists-->
+<div class="list-div-main">
+  <div class="create-btn-div">
+    {% if request.user.is_authenticated %}
+    <button type="submit" id="displayCreate">Create your own list</button>
+    {% else %}
+    <span><a href="/accounts/login"><i>Log in to create a list.</i></a></span>
+    {% endif %}
+  </div>
+  <div class="lists-section-header">
+    <div class="header-left">
+      <span>Recent Lists</span>
+    </div>
+  </div>
+  <div class="recent-lists">
+    {% for list in recent_lists %}
+    <div class="list-div">
+      <!-- Link for the list will be 5 album covers stacked (or empty "albums" if user has less than 5 albums in list) -->
+      <div class="list-albums-img">
+        <a href="/accounts/{{ list.author }}/lists/{{ list.title_slug }}">
+        {% for link in list.cover_art_urls %}
+          {% if forloop.counter == 1 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-1"/>
+            {% else %}
+              <div class="list-album-1-empty"></div>
+            {% endif %}
+          {% elif forloop.counter == 2 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-2"/>
+            {% else %}
+              <div class="list-album-2-empty"></div>
+            {% endif %}
+          {% elif forloop.counter == 3 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-3"/>
+            {% else %}
+              <div class="list-album-3-empty"></div>
+            {% endif %}
+          {% elif forloop.counter == 4 %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-4"/>
+            {% else %}
+              <div class="list-album-4-empty"></div>
+            {% endif %}
+          {% else %}
+            {% if link %}
+              <img src="{{ link }}" class="list-album-5"/>
+            {% else %}
+              <div class="list-album-5-empty"></div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        </a>
+      </div>
+      <div class="list-info">
+        <span><a href="/accounts/{{ list.author }}/lists/{{ list.title_slug }}">{{ list.title }}</a></span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% load static %}
+<script src="{% static 'lists/js/list_general.js' %}"></script>
+
+{% endblock %}

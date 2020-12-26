@@ -1,0 +1,136 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/reviews.css'%}"/>
+
+<!-- List of user's reviews -->
+<div class="profile-reviews-container">
+  <div class="profile-header">
+    <div class="header-left">
+      {% if my_profile %}
+      <span><a href="/accounts/{{ profile_username }}">Your</a> Reviews</span>
+      {% else %}
+      <span><a href="/accounts/{{ profile_username }}">{{ profile_username }}'s</a> Reviews</span>
+      {% endif %}
+    </div>
+    <div class="header-right">
+      <a href="/accounts/{{ profile_username }}"><i>back to profile</i></a>
+    </div>
+  </div>
+  <div class="reviews-wrapper">
+    {% for review in reviews %}
+    <div class="review-div">
+      <div class="review-left">
+        <div class="albums-box-img">
+          <a href="/albums/{{ review.album_id }}">
+            <img src="{{ review.cover_art_url }}" class="albums-img"/>
+          </a>
+        </div>
+        <div class="albums-box-info">
+          <i>{{ review.album }}</i> by <a href="/artists/{{ review.artist_id }}">{{ review.artist }}</a>
+        </div>
+      </div>
+      <div class="review-right">
+        <div class="review-section-header">
+          <div class="header-left">
+            <span>Review by <a href="/accounts/{{ review.author }}" class="review-author">{{ review.author }}</a></span>
+          </div>
+          <div class="header-right">
+            <span>{{ review.date }}</span>
+          </div>
+        </div>
+        <div class="review-rating">
+          <div class="rating-left">
+            <!-- Review rating out of 5 stars-->
+            <div class="rating-rating">
+              {% if review.rating == "0.5" %}
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "1.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "1.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "2.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "2.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "3.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "3.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "4.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-empty"></i>
+              {% elif review.rating == "4.5" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star-half star-half"></i>
+              <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+              {% elif review.rating == "5.0" %}
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              <i class="fas fa-star star-full"></i>
+              {% endif %}
+            </div>
+            <div class="rating-like">
+              {% if review.like == "YES" %}
+              <i class="fas fa-thumbs-up"></i>
+              {% else %}
+              <i class="fas fa-thumbs-down"></i>
+              {% endif %}
+            </div>
+          </div>
+          <div class="rating-right">
+            <a href="/accounts/{{ review.author }}/reviews/{{ review.album_id }}"><i>See full review</i></a>
+          </div>
+        </div>
+        <div class="review-text">
+          {{ review.shorten }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

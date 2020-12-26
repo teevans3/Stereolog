@@ -1,0 +1,223 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'albums/css/album_general.css' %}"/>
+
+<!-- Hidden popup to search for albums -->
+<div class="form-popup" id="searchAlbumForm">
+  <div class="close-div">
+    <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+  </div>
+  <div class="form-popup-header">
+    <div class="header-left">
+      <span>Search</span>
+    </div>
+  </div>
+  <form action="/albums/" method="post">
+    {% csrf_token %}
+    <div class="form-search-div">
+      <input type="text" name="album_name" autocomplete="off"/>
+    </div>
+    <div class="form-btn-div">
+      <button>Search</button>
+    </div>
+  </form>
+</div>
+<!-- Hidden popup to display search results -->
+{% if results %}
+<div class="search-results-popup">
+  <div class="close-div">
+    <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+  </div>
+  <div class="form-popup-header">
+    <div class="header-left">
+      <span>Search Results</span>
+    </div>
+  </div>
+  <div class="results-for">
+    Showing results for "{{ search }}"
+  </div>
+  <div class="list-albums">
+    {% for item in results %}
+    <div class="list-albums-box">
+      <div class="albums-box-img">
+        <a href="{{ item.album_id }}" >
+          {% if item.cover_art_url %}
+          <img class="albums-img" src="{{ item.cover_art_url }}"/>
+          {% else %}
+          <div class="albums-img-empty"></div>
+          {% endif %}
+        </a>
+      </div>
+      <div class="albums-box-info">
+        <i>{{ item.album }}</i> by <a href="/artists/{{ item.artist_id }}">{{ item.artist }}</a>
+      </div>
+    </div>
+    {% endfor%}
+  </div>
+</div>
+{% endif %}
+<div class="page-header">
+  <h1>Albums</h1>
+</div>
+<!-- Display button to for search-popup, newly-released albums, and any recent reviews -->
+<div class="albums-new-div">
+  <div class="search-btn-div">
+    <button type="submit" id="displaySearch">Search for music</button>
+  </div>
+  <div class="albums-section-header">
+    <div class="header-left">
+      <span>New Releases</span>
+    </div>
+  </div>
+  <div class="new-releases">
+    <div class="list-albums">
+      {% for album in new_releases %}
+      <div class="list-albums-box">
+        <div class="albums-box-img">
+          <a href="{{ album.album_id }}">
+            {% if album.cover_art_url %}
+            <img src="{{ album.cover_art_url }}" class="albums-img" />
+            {% else %}
+            <div class="albums-img-empty"></div>
+            {% endif %}
+          </a>
+        </div>
+        <div class="albums-box-info">
+          <i>{{ album.name }}</i> by <a href="/artists/{{ album.artist_id }}">{{ album.artist }}</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% if reviews %}
+<div class="albums-reviews">
+  <div class="albums-section-header">
+    <div class="header-left">
+      <span>Recent Reviews</span>
+    </div>
+  </div>
+  <div class="recent-reviews">
+    <div class="reviews-wrapper">
+      {% for review in reviews %}
+      <div class="review-div">
+        <div class="review-left">
+          <div class="albums-box-img">
+            <a href="{{ review.album_id }}">
+              <img src="{{ review.cover_art_url }}" class="albums-img"/>
+            </a>
+          </div>
+          <div class="albums-box-info">
+            <i>{{ review.album }}</i> by <a href="/artists/{{ review.artist_id }}">{{ review.artist }}</a>
+          </div>
+        </div>
+        <div class="review-right">
+          <div class="review-section-header">
+            <div class="header-left">
+              <span>Review by <a href="/accounts/{{ review.author }}" class="review-author">{{ review.author }}</a></span>
+            </div>
+            <div class="header-right">
+              <span>{{ review.date }}</span>
+            </div>
+          </div>
+          <div class="review-rating">
+            <div class="rating-left">
+              <!-- Review rating out of 5 stars -->
+              <div class="rating-rating">
+                {% if review.rating == "0.5" %}
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "1.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "1.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "2.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "2.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "3.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "3.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "4.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "4.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                {% elif review.rating == "5.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                {% endif %}
+              </div>
+              <div class="rating-like">
+                {% if review.like == "YES" %}
+                <i class="fas fa-thumbs-up"></i>
+                {% else %}
+                <i class="fas fa-thumbs-down"></i>
+                {% endif %}
+              </div>
+            </div>
+            <div class="rating-right">
+              <a href="/accounts/{{ review.author }}/reviews/{{ review.album_id }}"><i>See full review</i></a>
+            </div>
+          </div>
+          <div class="review-text">
+            {{ review.shorten }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% load static %}
+<script src="{% static 'albums/js/album_general.js' %}"></script>
+
+{% endblock %}

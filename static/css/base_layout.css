@@ -1,0 +1,357 @@
+html {
+  height: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #000;
+  color: #ededed;
+}
+
+  .nav-wrapper {
+    width: 100%;
+  }
+
+    .nav-container {
+      width: 100%;
+      height: 94px;
+      box-sizing: border-box;
+      border-bottom: 3px solid #6c6c6c;
+      background-color: cyan;
+      font-family: 'Playfair Display', sans-serif;
+    }
+
+      .nav-logo {
+        width: 30%;
+        float: left;
+        box-sizing: border-box;
+        padding-top: 14px;
+        padding-left: 60px;
+        background-color: cyan;
+      }
+
+        .nav-logo a {
+          text-transform: uppercase;
+          text-decoration: none;
+          color: #ededed;
+        }
+
+        .nav-logo img {
+          width: 265px;
+          height: 70.5px;
+        }
+
+      nav {
+        float: right;
+        width: 70%;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        float: right;
+        margin-right: 60px;
+        box-sizing: border-box;
+      }
+
+        nav ul li {
+          display: inline-block;
+          margin-left: 60px;
+          padding-top: 34px;
+          position: relative;
+
+        }
+
+        nav a {
+          text-transform: uppercase;
+          text-decoration: none;
+          color: #464646;
+        }
+
+        nav a:hover {
+          color: #000;
+          font-weight: bolder;
+        }
+
+
+        #navProfile:hover + .sub-nav {
+          display: block;
+        }
+
+        #navProfile i {
+          margin-left: 6px;
+        }
+
+        .fa-angle-down {
+          color: #464646;
+        }
+
+        .sub-nav {
+          display: none;
+          position: absolute;
+          height: 270px;
+          width: 150px;
+          z-index: 20;
+          box-sizing: border-box;
+        }
+
+        .sub-nav:hover {
+          display: block;
+        }
+
+        .sub-nav-blank {
+          height: 36px;
+          width: 100%;
+          background-color: cyan;
+        }
+
+        .sub-nav-content {
+          height: 234px;
+          width: 100%;
+          background-color: cyan;
+          border-left: 3px solid #6c6c6c;
+          border-bottom: 3px solid #6c6c6c;
+          border-right: 3px solid #6c6c6c;
+        }
+
+          .sub-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+          }
+
+          .sub-nav li {
+            display: list-item;
+            margin-left: 44px;
+            padding-top: 22px;
+          }
+
+          .sub-nav li a {
+            text-transform: none;
+          }
+
+        .sub-nav-content button {
+          background: none;
+          border: none;
+          padding: 0;
+          /*input has OS specific font-family*/
+          cursor: pointer;
+          color: #464646;
+          text-decoration: none;
+          font-family: 'Playfair Display', sans-serif;
+          font-size: 16px;
+
+        }
+
+        .sub-nav-content button:hover {
+          color: #000;
+        }
+
+  .wrapper {
+    width: 1200px;
+    margin: auto;
+    margin-bottom: 140px;
+  }
+
+    .wrapper a {
+      color: #ededed;
+      text-decoration: none;
+    }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 60px;
+    margin-top: 60px;
+    font-family: 'Playfair Display', sans-serif;
+  }
+
+  .home-div {
+    background-color: #202020;
+    min-height: 800px;
+  }
+
+  .albums-img:hover, .list-albums-img:hover, .artist-album-img:hover {
+    border: 3px solid cyan;
+  }
+
+  .related-artist-img:hover {
+    border: 2px solid cyan;
+  }
+
+  .albums-box-info {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    padding: 7px;
+    color: #000;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .albums-box-info a {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .albums-box-img:hover + .albums-box-info {
+    display: block;
+    background-color: cyan;
+  }
+
+  .albums-box-info:hover {
+    display: block;
+    background-color: cyan;
+  }
+
+  .fa-thumbs-up, .fa-thumbs-down {
+    background-color: #202020;
+    color: #ededed;
+  }
+
+  .star-full {
+    color: cyan;
+  }
+
+  .star-empty {
+    color: #6c6c6c;
+  }
+
+  .star-half {
+    color: cyan;
+    padding-right: 0;
+    margin-right: 0;
+    width: 7px;
+  }
+
+  /* back side of the half star (half filled with color, half dull) */
+  .star-half-empty {
+    color: #6c6c6c;
+    padding-left: 0;
+    margin-left: 0;
+    width: 7px;
+  }
+
+  /* Style/position the first 5 albums in the list for each list (leave >5-album lists empty)*/
+  .list-album-1 {
+    z-index: 5;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border: 1px solid #6c6c6c;
+  }
+
+  .list-album-2 {
+    margin-left: 60px;
+    z-index: 4;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .list-album-3 {
+    margin-left: 120px;
+    z-index: 3;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .list-album-4 {
+    margin-left: 180px;
+    z-index: 2;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .list-album-5 {
+    margin-left: 240px;
+    z-index: 1;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .list-album-1-empty {
+    background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    z-index: 5;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border: 1px solid #6c6c6c;
+  }
+
+  .list-album-2-empty {
+    background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    margin-left: 60px;
+    z-index: 4;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .list-album-3-empty {
+    background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    margin-left: 120px;
+    z-index: 3;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .list-album-4-empty {
+    background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    margin-left: 180px;
+    z-index: 2;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .list-album-5-empty {
+    background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    margin-left: 240px;
+    z-index: 1;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-top: 1px solid #6c6c6c;
+    border-bottom: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+  }

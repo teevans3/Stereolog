@@ -1,0 +1,116 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'artists/css/artist_detail.css'%}"/>
+
+<!-- Artist details: artist picture on left, artist info on right (genres, popularity, followers, related artists)-->
+<div class="artist-detail-main">
+  <div class="artist-detail-left">
+    {% if artist_info.artist_image_url %}
+    <img class="artist-img" src="{{ artist_info.artist_image_url }}" />
+    {% else %}
+    <div class="artist-empty-img"></div>
+    {% endif %}
+  </div>
+  <div class="artist-detail-right">
+    <div class="artist-header">
+      <h1>{{ artist_info.name }}</h1>
+    </div>
+    <div class="artist-info">
+      <div class="artist-section-header">
+        <div class="header-left">
+          <span>Artist Info</span>
+        </div>
+      </div>
+      <div class="artist-info-left">
+        <span>Genres:</span>
+        {% if artist_info.genres %}
+        <ul class="info-content">
+          {% for genre in artist_info.genres %}
+          <li><i>{{ genre }}</i></li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <ul class="info-content">
+          <li><i>Unknown</i></li>
+        </ul>
+        {% endif %}
+      </div>
+      <div class="artist-info-right">
+        <div style="margin-bottom: 34px;">
+          <span>Followers: </span><span class="info-content">{{ artist_info.followers }}</span>
+        </div>
+        <div>
+          <span>Popularity: </span><span class="info-content" style="font-size: 18px;">{{ artist_info.popularity }}<span>/100</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="artist-info-related">
+      <div class="artist-section-header">
+        <div class="header-left">
+          <span>Related Artists</span>
+        </div>
+      </div>
+      {% if related_artists %}
+      <div class="related-artist-div">
+        {% for artist in related_artists %}
+          <div class="related-artist-box">
+            <div class="artist-box-img">
+              <a href="{{ artist.related_artist_id }}" >
+                {% if artist.artist_image_url %}
+                <img src="{{ artist.artist_image_url }}" class="related-artist-img"/>
+                {% else %}
+                <div class="related-artist-img-empty"></div>
+                {% endif %}
+              </a>
+            </div>
+            <div class="related-artist-name">
+              <a href="{{ artist.related_artist_id }}">{{ artist.name }}</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="related-artist-div-empty">
+        <span>There are currently no related artists.</span>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- List of artist's albums -->
+<div class="artist-albums-main">
+  <div class="artist-section-header">
+    <div class="header-left">
+      <span>Albums</span>
+    </div>
+  </div>
+  <div class="list-albums">
+    {% if artist_albums_info %}
+      {% for album in artist_albums_info %}
+      <div class="list-albums-box">
+        <div class="albums-box-img">
+          <a href="/albums/{{ album.album_id }}" >
+            {% if album.cover_art_url %}
+            <img class="albums-img" src="{{ album.cover_art_url }}"/>
+            {% else %}
+            <div class="albums-img-empty"></div>
+            {% endif %}
+          </a>
+        </div>
+        <div class="albums-box-info">
+          <i>{{ album.name }}</i>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="list-albums-empty">
+        <span>This artist currently has no albums.</span>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

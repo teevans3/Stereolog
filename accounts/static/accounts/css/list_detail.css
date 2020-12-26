@@ -1,0 +1,226 @@
+/* Cannot dynamically increase the spread of box-shadow (100vmax isn't working...) so
+  it is set to an arbitrary number.. hopefully lists don't get too long */
+
+.form-popup {
+  display: none;
+  height: 220px;
+  width: 600px;
+  margin-left: 300px;
+  margin-top: 97px;
+  z-index: 9;
+  background-color: #202020;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 20000px rgba(0,0,0,0.8);
+  border: 1px solid cyan;
+}
+
+  .show-popup {
+    display: block;
+    position: absolute;
+  }
+
+  .close-div {
+    width: 100%;
+    padding-top: 2px;
+  }
+
+    .close-popup {
+      background-color: #202020;
+      border: none;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+      float: right;
+    }
+
+      .fa-window-close {
+        background-color: #202020;
+        color: white;
+        width: 20px;
+        height: 20px;
+      }
+
+      .fa-window-close:hover {
+        color: #bb3f3f;
+        cursor: pointer;
+      }
+
+
+  .form-popup-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 20px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+  }
+
+  .form-search-div {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    background-color: red;
+  }
+
+    .form-search-div input {
+      width: 353px;
+    }
+
+  .form-btn-div {
+    margin-top: 42px;
+    width: 56px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+#deleteListForm p {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.search-results-popup {
+  max-height: 2501px;
+  width: 1200px;
+  z-index: 9;
+  background-color: #202020;
+  position: absolute;
+  margin-top: 160px;
+  box-shadow: 0 0 0 20000px rgba(0,0,0,0.8);
+  border: 1px solid cyan;
+}
+
+  .results-for {
+    height: 40px;
+    text-align: center;
+  }
+
+    .add-btn-div {
+      width: 27px;
+      margin: auto;
+    }
+
+      .add-btn-div button {
+        width: 27px;
+      }
+
+.list-container {
+  background-color: #202020;
+}
+
+  .list-section-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 40px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+      .header-left a {
+        font-weight: bold;
+      }
+
+    .header-right {
+      float: right;
+    }
+
+      .header-right span {
+        line-height: 60px;
+        font-size: 12px;
+        font-family: 'Playfair Display', sans-serif;
+      }
+
+  .list-description {
+    width: 97%;
+    margin: auto;
+    text-align: center;
+    max-height: 220px;
+    min-height: 120px;
+  }
+
+    .list-description-left {
+      float: left;
+      width: 70%;
+      text-align: left;
+      word-wrap: break-word;
+    }
+
+    .list-description-right {
+      float: right;
+      box-sizing: border-box;
+      width: 30%;
+      font-size: 14px;
+      text-align: right;
+    }
+
+  .list-albums {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+    .list-albums-box {
+      width: 240px;
+      height: 240px;
+      box-sizing: border-box;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+      .albums-img {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #6c6c6c;
+      }
+
+      .albums-img-empty {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #6c6c6c;
+        background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+      }
+
+      .albums-box-info {
+        display: none;
+        position: absolute;
+        background-color: gray;
+      }
+
+        .albums-img:hover + .albums-box-info {
+          display: block;
+        }
+
+        .albums-box-info:hover {
+          display: none;
+        }
+
+      .remove-btn-div {
+        width: 27px;
+        margin: auto;
+      }
+
+      .remove-btn-div button {
+        width: 27px;
+      }
+
+    .list-empty {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 40px;
+    }
+
+      .list-empty span {
+        font-family: 'Playfair Display', sans-serif;
+        font-size: 14px;
+      }

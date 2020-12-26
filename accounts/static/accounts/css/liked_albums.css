@@ -1,0 +1,65 @@
+.profile-likes-container {
+  background-color: #202020;
+  padding-bottom: 20px;
+}
+
+  .profile-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 40px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    margin-top: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+    .header-right {
+      float: right;
+    }
+
+      .header-right a {
+        line-height: 60px;
+        font-size: 12px;
+        font-family: 'Playfair Display', sans-serif;
+      }
+
+  .likes-wrapper {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+    .likes-albums-box {
+      width: 240px;
+      height: 240px;
+      box-sizing: border-box;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+      .albums-img {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #6c6c6c;
+      }
+
+      .albums-box-info {
+        display: none;
+        position: absolute;
+      }
+
+        .albums-img:hover + .albums-box-info {
+          display: block;
+        }
+
+        .albums-box-info:hover {
+          display: block;
+        }

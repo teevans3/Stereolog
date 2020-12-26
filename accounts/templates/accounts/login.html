@@ -1,0 +1,34 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/login.css'%}"/>
+
+<div class="login-div">
+  <div class="login-header">
+    <div class="header-left"">
+      <span>Log In</span>
+    </div>
+  </div>
+  {% if message %}
+  <div class="login-errors">
+    <span class="error-span">{{ message }}</span>
+  </div>
+  {% endif %}
+  <div class="login-form-div">
+    <form action="/accounts/login" method="post" autocomplete="off">
+      {% csrf_token %}
+      {{ login_form.as_p }}
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+  <div class="or-divider">
+    <span> or </span>
+  </div>
+  <div class="new-account">
+    <span><a href="/accounts/register"><i>Create a new account</i></a></span>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,282 @@
+/* Unfortunately 100vmax will not work for the box-shadow to cover the entire page...
+  This is extremely frustrating when you have a page with dynamic content that can make the
+  page height thousands of pixels... so I've just set the height for 6000px for now... */
+
+
+.form-popup {
+  display: none;
+  height: 220px;
+  width: 600px;
+  margin-left: 300px;
+  margin-top: 97px;
+  z-index: 9;
+  background-color: #202020;
+  box-shadow: 0 0 0 6000px rgba(0,0,0,0.7);
+  border: 1px solid cyan;
+  box-sizing: border-box;
+}
+
+  .show-popup {
+    display: block;
+    position: absolute;
+  }
+
+  .close-div {
+    width: 100%;
+    padding-top: 2px;
+  }
+
+    /* Style the close-popup icons */
+    .close-popup {
+      background-color: #202020;
+      border: none;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+      float: right;
+    }
+
+    .fa-window-close {
+      background-color: #202020;
+      color: white;
+      width: 20px;
+      height: 20px;
+    }
+
+    .fa-window-close:hover {
+      color: #bb3f3f;
+      cursor: pointer;
+    }
+
+  .form-popup-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 20px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+  .form-search-div {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+  }
+
+    .form-search-div input {
+      width: 353px;
+    }
+
+  .form-btn-div {
+    margin-top: 42px;
+    width: 56px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.search-results-popup {
+  max-height: 2501px;
+  width: 1200px;
+  z-index: 9;
+  background-color: #202020;
+  position: absolute;
+  margin-top: 97px;
+  box-shadow: 0 0 0 6000px rgba(0,0,0,0.7);
+  border: 1px solid cyan;
+}
+
+  .results-for {
+    height: 40px;
+    text-align: center;
+  }
+
+.albums-new-div {
+  background-color: #202020;
+}
+
+  .search-btn-div {
+    width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 20px;
+    padding-top: 40px;
+    margin-bottom: 0px;
+    box-sizing: border-box;
+  }
+
+    .search-btn-div button {
+      background-color: cyan;
+      border: 1px solid #6c6c6c;
+      width: 160px;
+      height: 26px;
+    }
+
+  .albums-section-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 60px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    margin-top: 40px;
+  }
+
+  .new-releases {
+    text-align: center;
+  }
+
+    .list-albums {
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+      .list-albums-box {
+        width: 240px;
+        height: 240px;
+        box-sizing: border-box;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+        .albums-img {
+          width: 200px;
+          height: 200px;
+          box-sizing: border-box;
+          border: 1px solid #6c6c6c;
+        }
+
+        .albums-img-empty {
+          width: 200px;
+          height: 200px;
+          box-sizing: border-box;
+          border: 1px solid #6c6c6c;
+          background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+        }
+
+      .albums-box-info {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        padding: 7px;
+        color: #000;
+        box-sizing: border-box;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .albums-box-img:hover + .albums-box-info {
+        display: block;
+        background-color: cyan;
+      }
+
+.albums-reviews {
+  background-color: #202020;
+  padding-bottom: 120px;
+}
+
+  .recent-reviews {
+    max-height: 2500px;
+  }
+
+    .reviews-wrapper {
+      width: 960px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+      .review-div {
+        height: 240px;
+        background-color: #2a2a2a;
+        border: 1px solid #6c6c6c;
+        margin-bottom: 20px;
+      }
+
+        .review-left {
+          float: left;
+          width: 23%;
+          padding-top: 20px;
+          padding-left: 20px;
+        }
+
+        .review-right {
+          float: right;
+          width: 74%;
+        }
+
+          .review-section-header {
+            border-bottom: 1px solid #6c6c6c;
+            margin-bottom: 20px;
+            width: 97%;
+            height: 40px;
+          }
+            .review-section-header .header-left {
+              font-size: 12px;
+            }
+
+              .review-section-header .header-left a {
+                font-weight: bold;
+                line-height: 62px;
+              }
+            .header-right {
+              float: right;
+            }
+
+              .review-section-header .header-right span {
+                font-size: 10px;
+                line-height: 66px;
+              }
+
+          .review-rating {
+            height: 40px;
+            padding-right: 20px;
+            width: 100%;
+          }
+
+            .rating-left {
+              float: left;
+              width: 80%;
+            }
+
+              .rating-rating {
+                float: left;
+              }
+
+              .rating-like {
+                float: right;
+                padding-right: 220px;
+              }
+
+                .fa-thumbs-up {
+                  background-color: #2a2a2a;
+                  color: #ededed;
+                }
+
+                .fa-thumbs-down {
+                  background-color: #2a2a2a;
+                  color: #ededed;
+                }
+
+            .rating-right {
+              float: right;
+              width: 15%;
+              text-align: right;
+              padding-right: 24px;
+              line-height: 4px;
+              font-size: 14px;
+            }
+
+          .review-text {
+            word-wrap: break-word;
+            padding-right: 20px;
+            height: 120px;
+          }

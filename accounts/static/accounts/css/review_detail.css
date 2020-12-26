@@ -1,0 +1,301 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+.form-popup {
+  display: none;
+  height: 384px;
+  width: 600px;
+  z-index: 9;
+  margin-left: 300px;
+  margin-top: 40px;
+  background-color: #202020;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 10000px rgba(0,0,0,0.8);
+  border: 1px solid cyan;
+}
+
+  .show-popup {
+    display: block;
+    position: absolute;
+  }
+
+  .close-div {
+    width: 99%;
+    padding-top: 1px;
+  }
+
+    .close-popup {
+      background-color: #202020;
+      border: none;
+      width: 20px;
+      height: 20px;
+      float: right;
+    }
+
+      .fa-window-close {
+        background-color: #202020;
+        color: white;
+        width: 20px;
+        height: 20px;
+      }
+
+      .fa-window-close:hover {
+        color: #bb3f3f;
+        cursor: pointer;
+      }
+
+  .form-popup-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 20px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+  .form-like-rating-div {
+    width: 400px;
+    margin-left: 80px;
+    margin-right: 120px;
+    height: 40px;
+  }
+
+    .form-like-rating-div span {
+      width: 100%;
+    }
+
+    .form-rating-div {
+      width: 50%;
+      float: left;
+      height: 40px;
+    }
+
+      .form-rating-div span {
+        margin-left: 21px;
+      }
+
+      .form-rating-div fieldset {
+        width: 79%;
+        padding-left: 0px;
+      }
+
+        /* Taken from: https://codepen.io/jamesbarnett/pen/vlpkh (cite???)*/
+        fieldset, label { margin: 0; padding: 0; }
+        h1 { font-size: 1.5em; margin: 10px; }
+
+        .rating {
+          border: none;
+          float: left;
+        }
+
+          .rating > input { display: none; }
+          .rating > label:before {
+            margin: 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+          }
+
+          .rating > .half:before {
+            content: "\f089";
+            position: absolute;
+          }
+
+          .rating > label {
+            color: #6c6c6c;
+            float: right;
+          }
+
+          .rating > input:checked ~ label, /* show gold star when clicked */
+          .rating:not(:checked) > label:hover, /* hover current star */
+          .rating:not(:checked) > label:hover ~ label { color: cyan;  } /* hover previous stars in list */
+
+          .rating > input:checked + label:hover, /* hover current star when changing rating */
+          .rating > input:checked ~ label:hover,
+          .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+          .rating > input:checked ~ label:hover ~ label { color: cyan;  }
+
+    .form-like-div {
+      width: 50%;
+      float: right;
+      height: 40px;
+    }
+
+      .form-like-div span {
+        margin-left: 25px;
+      }
+
+      .form-like-div div {
+        width: 100%;
+      }
+
+        .form-thumbs-up, .form-thumbs-down {
+          color: #6c6c6c;
+        }
+
+          .form-thumbs-up:hover, .form-thumbs-down:hover {
+            color: #ededed;
+            cursor: pointer;
+          }
+
+        .form-thumbs-active {
+          color: #ededed;
+        }
+
+        #yes, #no {
+          visibility: hidden;
+        }
+
+  .form-review-div {
+    width: 400px;
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+
+    .form-review-div textarea {
+       resize: none;
+       width: 100%;
+       height: 160px;
+    }
+
+  .form-btn-div {
+    margin-top: 42px;
+    width: 56px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+#deleteForm {
+  height: 220px;
+}
+
+  #deleteForm p {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+.full-review-div {
+  margin-top: 40px;
+  background-color: #202020;
+  padding-bottom: 20px;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+  .review-detail-left {
+    float: left;
+    width: 600px;
+    height: 600px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 40px
+  }
+
+    .albums-img {
+      width: 520px;
+      height: 520px;
+      border: 1px solid #6c6c6c;
+    }
+
+    .albums-img-empty {
+      height: 520px;
+      width: 520px;
+      border: 1px solid #6c6c6c;
+      background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    }
+
+  .review-detail-right {
+    float: right;
+    width: 600px;
+    box-sizing: border-box;
+    padding: 12px;
+    padding-top: 0px;
+    padding-right: 40px;
+  }
+
+    .review-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .review-section-header {
+      border-bottom: 1px solid #6c6c6c;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 40px;
+    }
+
+      .header-left a {
+        font-weight: bold;
+      }
+
+      .header-right {
+        float: right;
+      }
+
+        .header-right span {
+          line-height: 60px;
+          font-size: 12px;
+          font-family: 'Playfair Display', sans-serif;
+        }
+
+    .review-rating {
+      height: 30px;
+      padding-right: 20px;
+    }
+
+      .rating-left {
+        float: left;
+        width: 60%;
+      }
+
+        .rating-rating {
+          float: left;
+        }
+
+        .rating-like {
+          float: right;
+          padding-right: 44px;
+        }
+
+          .rating-like .fa-thumbs-up, .rating-like .fa-thumbs-down {
+            background-color: #202020;
+            border: 0px;
+            color: #ededed;
+          }
+
+
+      .rating-right {
+        float: right;
+        width: 40%;
+        text-align: right;;
+      }
+
+        .edit-delete-btn-div {
+          width: 193px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+    .review-text {
+      word-wrap: break-word;
+      padding-right: 20px;
+      font-family: Century Schoolbook;
+    }
+
+    .other-reviews {
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }

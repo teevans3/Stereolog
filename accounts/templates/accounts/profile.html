@@ -1,0 +1,271 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css'%}"/>
+
+<div class="page-header">
+  <h1 style="text-align: center;">{{ profile_username }}</h1>
+</div>
+<!-- User's most recent reviews -->
+<div class="profile-reviews-div">
+  <div class="profile-header">
+    <div class="header-left"">
+      {% if my_profile%}
+      <span>Your Recent Reviews</span>
+      {% else %}
+      <span>{{ profile_username }}'s Recent Reviews</span>
+      {% endif %}
+    </div>
+    <!-- Only display link if user has existing reviews -->
+    {% if recent_reviews %}
+    <div class="header-right">
+      <a href="/accounts/{{ profile_username }}/reviews"><i>See all reviews</i></a>
+    </div>
+    {% endif %}
+  </div>
+  {% if recent_reviews %}
+    <div class="reviews-wrapper">
+      {% for review in recent_reviews %}
+      <div class="review-div">
+        <div class="review-left">
+          <div class="albums-box-img">
+            <a href="/albums/{{ review.album_id }}">
+              <img src="{{ review.cover_art_url }}" class="albums-img"/>
+            </a>
+          </div>
+          <div class="albums-box-info">
+            <i>{{ review.album }}</i> by <a href="/artists/{{ review.artist_id }}">{{ review.artist }}</a>
+          </div>
+        </div>
+        <div class="review-right">
+          <div class="review-section-header">
+            <div class="header-left">
+              <span>Review by <a href="/accounts/{{ review.author }}" class="review-author">{{ review.author }}</a></span>
+            </div>
+            <div class="header-right">
+              <span>{{ review.date }}</span>
+            </div>
+          </div>
+          <div class="review-rating">
+            <div class="rating-left">
+              <!-- Review rating out of 5 stars -->
+              <div class="rating-rating">
+                {% if review.rating == "0.5" %}
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "1.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "1.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "2.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "2.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "3.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "3.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "4.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-empty"></i>
+                {% elif review.rating == "4.5" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star-half star-half"></i>
+                <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+                {% elif review.rating == "5.0" %}
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                <i class="fas fa-star star-full"></i>
+                {% endif %}
+              </div>
+              <div class="rating-like">
+                {% if review.like == "YES" %}
+                <i class="fas fa-thumbs-up"></i>
+                {% else %}
+                <i class="fas fa-thumbs-down"></i>
+                {% endif %}
+              </div>
+            </div>
+            <div class="rating-right">
+              <a href="/accounts/{{ review.author }}/reviews/{{ review.album_id }}"><i>See full review</i></a>
+            </div>
+          </div>
+          <div class="review-text">
+            {{ review.shorten }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="profile-info-empty">
+    {% if my_profile %}
+      <span>You currently have no reviews.</span>
+    {% else %}
+      <span>{{ profile_username }} currently has no reviews.</span>
+    {% endif %}
+    </div>
+  {% endif %}
+</div>
+<!-- User's most recent lists -->
+<div class="profile-lists-div">
+  <div class="profile-header">
+    <div class="header-left">
+      {% if my_profile %}
+        <span>Your Recent Lists</span>
+      {% else %}
+        <span>{{ profile_username }}'s Recent Lists</span>
+      {% endif %}
+    </div>
+    <!-- Only display link if user has existing lists -->
+    {% if recent_lists %}
+    <div class="header-right">
+      <a href="/accounts/{{ profile_username }}/lists"><i>See all lists</i></a>
+    </div>
+    {% endif %}
+  </div>
+  {% if recent_lists %}
+  <div>
+    <div class="lists-wrapper">
+      {% for list in recent_lists %}
+      <div class="list-div">
+        <!-- Link for the list will be 5 album covers stacked (or empty "albums" if user has less than 5 albums in list) -->
+        <div class="list-albums-img">
+          <a href="/accounts/{{ list.author }}/lists/{{ list.title_slug }}">
+          {% for link in list.cover_art_urls %}
+            {% if forloop.counter == 1 %}
+              {% if link %}
+                <img src="{{ link }}" class="list-album-1"/>
+              {% else %}
+                <div class="list-album-1-empty"></div>
+              {% endif %}
+            {% elif forloop.counter == 2 %}
+              {% if link %}
+                <img src="{{ link }}" class="list-album-2"/>
+              {% else %}
+                <div class="list-album-2-empty"></div>
+              {% endif %}
+            {% elif forloop.counter == 3 %}
+              {% if link %}
+                <img src="{{ link }}" class="list-album-3"/>
+              {% else %}
+                <div class="list-album-3-empty"></div>
+              {% endif %}
+            {% elif forloop.counter == 4 %}
+              {% if link %}
+                <img src="{{ link }}" class="list-album-4"/>
+              {% else %}
+                <div class="list-album-4-empty"></div>
+              {% endif %}
+            {% else %}
+              {% if link %}
+                <img src="{{ link }}" class="list-album-5"/>
+              {% else %}
+                <div class="list-album-5-empty"></div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          </a>
+        </div>
+        <div class="list-info">
+          <span><a href="/accounts/{{ list.author }}/lists/{{ list.title_slug }}">{{ list.title }}</a></span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="profile-info-empty">
+    {% if my_profile %}
+    <span>You currently have no lists.</span>
+    {% else %}
+    <span>{{ profile_username }} currently has no lists.</span>
+    {% endif%}
+  </div>
+  {% endif %}
+</div>
+<!-- User's most recently liked albums -->
+<div class="profile-likes-div">
+  <div class="profile-header">
+    <div class="header-left">
+      {% if my_profile %}
+        <span>Your Recent Likes</span>
+      {% else %}
+        <span>{{ profile_username }}'s Recent Likes</span>
+      {% endif %}
+    </div>
+    <!-- Only display link if user has existing liked-albums -->
+    {% if recently_liked_albums %}
+    <div class="header-right">
+      <a href="/accounts/{{ profile_username }}/likes"><i>See all likes</i></a>
+    </div>
+    {% endif %}
+  </div>
+  {% if recently_liked_albums %}
+  <div class="likes-wrapper">
+    {% for album in recently_liked_albums %}
+    <div class="likes-albums-box">
+      <div class="albums-box-img">
+        <a href="/albums/{{ album.album_id }}">
+          <img src="{{ album.cover_art_url }}" class="albums-img" />
+        </a>
+      </div>
+      <div class="albums-box-info">
+        <i>{{ album.album }}</i> by <a href="/artists/{{ album.artist_id }}">{{ album.artist }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="profile-info-empty">
+    {% if my_profile %}
+    <span>You currently have no liked albums.</span>
+    {% else %}
+    <span>{{ profile_username }} currently has no liked albums.</span>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

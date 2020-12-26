@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base_layout.css' %}"/>
+    <script src="https://kit.fontawesome.com/711f1184c3.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- Nav bar -->
+    <div class="nav-wrapper">
+      <header>
+        <div class="nav-container">
+          <div class="nav-logo">
+            <a href="/"><img src="{% static '/images/logo.png' %}" /></a>
+          </div>
+          <nav>
+            <ul>
+              {% if request.user.is_authenticated %}
+              <li>
+                <a href="/accounts/{{ user }}" id="navProfile"><span id="sessionUser">{{ user }}</span><i class="fas fa-angle-down"></i></a>
+                <ul class="sub-nav">
+                  <div class="sub-nav-blank"></div>
+                  <div class="sub-nav-content">
+                    <li>
+                      <a href="/accounts/{{ user }}" id="sessionUser">Profile</a>
+                    </li>
+                    <li>
+                      <a href="/accounts/{{ user }}/reviews" id="subnavReviews">Reviews</a>
+                    </li>
+                    <li>
+                      <a href="/accounts/{{ user }}/lists" id="subnavLists">Lists</a>
+                    </li>
+                    <li>
+                      <a href="/accounts/{{ user }}/likes" id="subnavLikes">Likes</a>
+                    </li>
+                    <li>
+                      <form action="/accounts/logout" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Log Out</button>
+                      </form>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+              {% else %}
+              <li>
+                <a href="/accounts/login">Log In</a>
+              </li>
+              {% endif %}
+              <li>
+                <a href="/albums">Albums</a>
+              </li>
+              <li>
+                <a href="/lists">Lists</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+    <!-- Content -->
+    <div class="wrapper">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <script src="{% static 'js/base_layout.js' %}"></script>
+  </body>
+</html>

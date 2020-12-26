@@ -1,0 +1,131 @@
+.profile-reviews-container {
+  background-color: #202020;
+  padding-bottom: 20px;
+}
+
+  .profile-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 40px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    margin-top: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+    .header-right {
+      float: right;
+    }
+
+      .header-right a {
+        line-height: 60px;
+        font-size: 12px;
+        font-family: 'Playfair Display', sans-serif;
+      }
+
+  .reviews-wrapper {
+    width: 960px;
+    margin: auto;
+    box-sizing: border-box;
+  }
+
+    .review-div {
+      height: 240px;
+      border: 1px solid #6c6c6c;
+      margin-bottom: 20px;
+      background-color: #2a2a2a;
+    }
+
+      .review-left {
+        float: left;
+        width: 23%;
+        padding-top: 20px;
+        padding-left: 20px;
+      }
+        .albums-img {
+          width: 200px;
+          height: 200px;
+          box-sizing: border-box;
+          border: 1px solid #6c6c6c;
+        }
+
+        .albums-box-info {
+          display: none;
+          position: absolute;
+        }
+
+      .review-right {
+        float: right;
+        width: 74%;
+      }
+
+        .review-section-header {
+          border-bottom: 1px solid #6c6c6c;
+          margin-bottom: 20px;
+          width: 97%;
+          height: 40px;
+          }
+          .review-section-header .header-left {
+            font-size: 12px;
+          }
+
+            .review-section-header .header-left a {
+              font-weight: bold;
+              line-height: 62px;
+            }
+
+          .review-section-header .header-right span {
+            font-size: 10px;
+            line-height: 66px;
+          }
+
+        .review-rating {
+          height: 40px;
+          padding-right: 20px;
+          width: 100%;
+        }
+
+          .rating-left {
+            float: left;
+            width: 80%;
+          }
+
+            .rating-rating {
+              float: left;
+            }
+
+            .rating-like {
+              float: right;
+              padding-right: 220px;
+            }
+
+              .fa-thumbs-up {
+                background-color: #2a2a2a;
+                color: white;
+              }
+
+              .fa-thumbs-down {
+                background-color: #2a2a2a;
+                color: white;
+              }
+
+          .rating-right {
+            float: right;
+            width: 15%;
+            text-align: right;
+            padding-right: 24px;
+            line-height: 4px;
+            font-size: 14px;
+          }
+
+        .review-text {
+          word-wrap: break-word;
+          padding-right: 20px;
+        }

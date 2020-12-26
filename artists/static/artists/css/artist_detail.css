@@ -1,0 +1,211 @@
+.artist-detail-main {
+  height: 600px;
+  background-color: #202020;
+  margin-top: 60px;
+}
+
+  .artist-detail-left {
+    float: left;
+    width: 600px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 40px;
+  }
+
+    .artist-img {
+      width: 520px;
+      height: 520px;
+      box-sizing: border-box;
+      border: 1px solid #6c6c6c;
+    }
+
+    .artist-empty-img {
+      width: 520px;
+      height: 520px;
+      box-sizing: border-box;
+      background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    }
+
+  .artist-detail-right {
+    float: right;
+    width: 600px;
+    box-sizing: border-box;
+    padding-right: 40px;
+  }
+
+    .artist-header {
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', sans-serif;
+    }
+
+    .artist-info {
+      height: 180px;
+    }
+
+      .artist-section-header {
+        border-bottom: 1px solid #6c6c6c;
+        margin-bottom: 20px;
+        width: 97%;
+        height: 40px;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+        .header-left {
+          float: left;
+          font-family: 'Playfair Display', sans-serif;
+          font-size: 14px;
+          line-height: 59px;
+        }
+
+      .artist-info-left {
+        margin-left: 8px;
+        float: left;
+        width: 40%;
+      }
+
+        .artist-info-left span {
+          float: left;
+          font-size: 14px;
+          color: #6c6c6c;
+        }
+
+        .artist-info-left ul {
+          list-style: none;
+          margin-bottom: 0px;
+          margin-top: 0px;
+        }
+
+        .info-content li {
+          text-align: right;
+          list-style: none;
+        }
+
+      .artist-info-right {
+        margin-right: 92px;
+        float: right;
+        width: 30%;
+      }
+
+        .artist-info-right span {
+          color: #6c6c6c;
+          font-size: 14px;
+        }
+
+        .artist-info-right .info-content {
+          float: right !important;
+          color: #ededed;
+        }
+
+
+    .related-artist-div {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+      .related-artist-box {
+        margin-right: 12px;
+        margin-bottom: 8px;
+      }
+
+        .related-artist-img {
+          width: 100px;
+          height: 100px;
+          box-sizing: border-box;
+          border: 1px solid #6c6c6c;
+        }
+
+        .related-artist-img-empty {
+          width: 100px;
+          height: 100px;
+          box-sizing: border-box;
+          background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+        }
+
+        .related-artist-name {
+          display: none;
+          position: absolute;
+          z-index: 2;
+          padding: 7px;
+          box-sizing: border-box;
+          border-radius: 20px;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: cyan;
+          font-weight: bold;
+        }
+
+        .related-artist-name a {
+          color: #000;
+        }
+
+        .artist-box-img:hover + .related-artist-name {
+          display: block;
+        }
+
+        .related-artist-name:hover {
+          display: block;
+        }
+
+    .related-artist-div-empty {
+      text-align: center;
+    }
+
+.artist-albums-main {
+  background-color: #202020;
+  margin-top: 40px;
+}
+
+  .list-albums {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+    .list-albums-box {
+      width: 240px;
+      height: 240px;
+      box-sizing: border-box;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+      .albums-img {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #6c6c6c;
+      }
+
+      .albums-img-empty {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #6c6c6c;
+        background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+      }
+
+      .albums-box-img:hover + .albums-box-info {
+        display: block;
+        background-color: cyan;
+      }
+
+      .albums-box-info {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        padding: 7px;
+        color: #000;
+        box-sizing: border-box;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+    .list-albums-empty {
+      text-align: center;
+    }

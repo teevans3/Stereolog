@@ -1,0 +1,84 @@
+/* Edit/hide the Django default form styles */
+
+.errorlist {
+  display: none;
+}
+
+.login-div {
+  padding-bottom: 20px;
+  background-color: #202020;
+  margin-top: 40px;
+}
+
+  .login-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 40px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    margin-top: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+  .login-errors {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+    .error-span {
+      color: #bb3f3f;
+      font-size: 16px;
+    }
+
+  .login-form-div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+  }
+
+    input, label {
+      display: block;
+    }
+
+      input[type='text'], input[type='password'] {
+        width: 240px;
+        height: 30px;
+      }
+
+      input[type='submit'] {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 40px;
+      }
+
+        input[type='submit']:hover {
+          cursor: pointer;
+        }
+
+  .or-divider {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+    .or-divider span::before, .or-divider span::after {
+      content: '';
+      background-color: #6c6c6c;;
+      height: 1px;
+      width: 110px;
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 3px;
+    }
+
+  .new-account {
+    text-align: center;
+    margin-bottom: 20px;
+  }

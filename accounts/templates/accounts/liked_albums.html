@@ -1,0 +1,38 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/liked_albums.css'%}"/>
+
+<!-- List of all user's liked albums -->
+<div class="profile-likes-container">
+  <div class="profile-header">
+    <div class="header-left">
+      {% if my_profile %}
+      <span><a href="/accounts/{{ profile_username }}">Your</a> Liked Albums</span>
+      {% else %}
+      <span><a href="/accounts/{{ profile_username }}">{{ profile_username }}'s</a> Liked Albums</span>
+      {% endif %}
+    </div>
+    <div class="header-right">
+      <a href="/accounts/{{ profile_username }}"><i>back to profile</i></a>
+    </div>
+  </div>
+  <div class="likes-wrapper">
+    {% for album in liked_albums %}
+    <div class="likes-albums-box">
+      <div class="albums-box-img">
+        <a href="/albums/{{ album.album_id }}">
+          <img src="{{ album.cover_art_url }}" class="albums-img" />
+        </a>
+      </div>
+      <div class="albums-box-info">
+        <i>{{ album.album }}</i> by <a href="/artists/{{ album.artist_id }}">{{ album.artist }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

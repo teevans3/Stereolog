@@ -1,0 +1,232 @@
+.home-section-div {
+  padding-bottom: 20px;
+  background-color: #202020;
+
+}
+
+  .home-about {
+    text-align: center;
+    font-family: 'Playfair Display', sans-serif;
+  }
+
+    .home-about div {
+      font-size: 28px;
+      height: 80px;
+      line-height: 80px;
+    }
+
+      .home-about div::before, .home-about div::after {
+        content: '';
+        background-color: #6c6c6c;
+        height: 1px;
+        width: 80px;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 8px;
+      }
+
+    .home-about span {
+      font-size: 20px;
+    }
+
+  .home-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 40px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    margin-top: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+    .header-right {
+      float: right;
+    }
+
+  .header-right a {
+    line-height: 60px;
+    font-size: 12px;
+    font-family: 'Playfair Display', sans-serif;
+  }
+
+  .list-albums {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+    .list-albums-box {
+      width: 240px;
+      height: 240px;
+      box-sizing: border-box;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+      .albums-img {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #6c6c6c;
+      }
+
+      .albums-img-empty {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #6c6c6c;
+        background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+      }
+
+    .albums-box-info {
+      display: none;
+      position: absolute;
+      z-index: 2;
+      padding: 7px;
+      color: #000;
+      box-sizing: border-box;
+      border-radius: 20px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .albums-box-img:hover + .albums-box-info {
+      display: block;
+      background-color: cyan;
+    }
+
+  .reviews-wrapper {
+    width: 960px;
+    margin: auto;
+    box-sizing: border-box;
+  }
+
+    .review-div {
+      height: 240px;
+      border: 1px solid #6c6c6c;
+      margin-bottom: 20px;
+      background-color: #2a2a2a;
+    }
+
+      .review-left {
+        float: left;
+        width: 23%;
+        padding-top: 20px;
+        padding-left: 20px;
+      }
+        .albums-img {
+          width: 200px;
+          height: 200px;
+          box-sizing: border-box;
+          border: 1px solid #6c6c6c;
+        }
+
+        .albums-box-info {
+          display: none;
+          position: absolute;
+        }
+
+      .review-right {
+        float: right;
+        width: 74%;
+      }
+
+        .review-section-header {
+          border-bottom: 1px solid #6c6c6c;
+          margin-bottom: 20px;
+          width: 97%;
+          height: 40px;
+        }
+
+        .review-section-header .header-left {
+          font-size: 12px;
+        }
+
+        .review-section-header .header-left a {
+          font-weight: bold;
+          line-height: 62px;
+        }
+
+        .review-section-header .header-right span {
+          font-size: 10px;
+          line-height: 66px;
+        }
+
+        .review-rating {
+          height: 30px;
+          padding-right: 20px;
+          width: 100%;
+        }
+
+          .rating-left {
+            float: left;
+            width: 80%;
+          }
+
+            .rating-rating {
+              float: left;
+            }
+
+            .rating-like {
+              float: right;
+              padding-right: 220px;
+            }
+
+              .fa-thumbs-up {
+                background-color: #2a2a2a;
+                color: white;
+              }
+
+              .fa-thumbs-down {
+                background-color: #2a2a2a;
+                color: white;
+              }
+
+          .rating-right {
+            float: right;
+            width: 15%;
+            text-align: right;
+            padding-right: 24px;
+            line-height: 4px;
+            font-size: 14px;
+          }
+
+        .review-text {
+          word-wrap: break-word;
+          padding-right: 20px;
+        }
+
+  .list-lists {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+    .list-div {
+      height: 442px;
+      width: 600px;
+    }
+
+      .list-albums-img {
+        width: 481px;
+        height: 242px;
+        margin-left: 57px;
+      }
+
+      .list-info {
+        height: 200px;
+        text-align: center;
+        padding-top: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        font-family: 'Playfair Display', sans-serif;
+        word-wrap: break-word;
+        font-size: 18px;
+      }

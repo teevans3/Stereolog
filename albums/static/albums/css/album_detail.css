@@ -1,0 +1,479 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
+.form-popup {
+  display: none;
+  height: 384px;
+  width: 600px;
+  z-index: 9;
+  margin-left: 300px;
+  margin-top: 86px;
+  background-color: #202020;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 10000px rgba(0,0,0,0.8);
+  border: 1px solid cyan;
+}
+
+  .show-popup {
+    display: block;
+    position: absolute;
+  }
+
+  .close-div {
+    width: 99%;
+    padding-top: 1px;
+  }
+
+    .close-popup {
+      background-color: #202020;
+      border: none;
+      width: 20px;
+      height: 20px;
+      float: right;
+    }
+
+      .fa-window-close {
+        background-color: #202020;
+        color: white;
+        width: 20px;
+        height: 20px;
+      }
+
+      .fa-window-close:hover {
+        color: #bb3f3f;
+        cursor: pointer;
+      }
+
+  .form-popup-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 20px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+  }
+
+    .header-left {
+      float: left;
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+      line-height: 59px;
+    }
+
+
+  .form-like-rating-div {
+    width: 400px;
+    margin-left: 80px;
+    margin-right: 120px;
+    height: 40px;
+  }
+
+    .form-rating-div {
+      width: 50%;
+      float: left;
+      height: 40px;
+    }
+
+      .form-rating-div span {
+        margin-left: 21px;
+      }
+
+      .form-rating-div fieldset {
+        width: 79%;
+        padding-left: 0px;
+      }
+
+
+      /* Hide the radios themselves (but still display the thumbs up/down)*/
+      #yes, #no {
+        visibility: hidden;
+      }
+
+      /* Taken from: https://codepen.io/jamesbarnett/pen/vlpkh */
+      fieldset, label { margin: 0; padding: 0; }
+      h1 { font-size: 1.5em; margin: 10px; }
+
+      .rating {
+        border: none;
+        float: left;
+      }
+
+        .rating > input { display: none; }
+        .rating > label:before {
+          margin: 5px;
+          font-size: 1.25em;
+          font-family: FontAwesome;
+          display: inline-block;
+          content: "\f005";
+        }
+
+        .rating > .half:before {
+          content: "\f089";
+          position: absolute;
+        }
+
+        .rating > label {
+          color: #6c6c6c;
+          float: right;
+        }
+
+        .rating > input:checked ~ label, /* show cyan star when clicked */
+        .rating:not(:checked) > label:hover, /* hover current star */
+        .rating:not(:checked) > label:hover ~ label { color: cyan;  } /* hover previous stars in list */
+
+        .rating > input:checked + label:hover, /* hover current star when changing rating */
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+        .rating > input:checked ~ label:hover ~ label { color: cyan;  }
+
+    .form-like-div {
+      width: 50%;
+      float: right;
+      height: 40px;
+    }
+
+      .form-like-div span {
+        margin-left: 25px;
+      }
+
+      .form-like-div div {
+        width: 100%;
+      }
+
+        .form-thumbs-up, .form-thumbs-down {
+          background-color: #202020;
+          border: 0px;
+          color: #6c6c6c;
+        }
+
+        .form-thumbs-up:hover, .form-thumbs-down:hover {
+         color: #ededed;
+         cursor: pointer;
+        }
+
+        .form-thumbs-active {
+          color: #ededed;
+        }
+
+  .form-review-div {
+    width: 400px;
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+
+    .form-review-div textarea {
+       resize: none;
+       width: 100%;
+       height: 160px;
+    }
+
+  .form-btn-div {
+    margin-top: 42px;
+    width: 56px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.album-detail-main {
+  height: 600px;
+  margin-bottom: 40px;
+  background-color: #202020;
+  margin-top: 60px;
+}
+
+  .album-detail-left {
+    float: left;
+    width: 600px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 40px;
+  }
+
+    .album-img {
+      height: 520px;
+      width: 520px;
+      box-sizing: border-box;
+      border: 1px solid #6c6c6c;
+    }
+
+    .album-img-empty {
+      height: 520px;
+      width: 520px;
+      background-image: repeating-linear-gradient(60deg, #002727, #002727 30px, #001414 30px, #001414 60px);
+    }
+
+  .album-detail-right {
+    float: right;
+    width: 600px;
+    box-sizing: border-box;
+    padding-right: 40px;
+  }
+
+    .album-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+      .album-header h1 {
+        font-family: 'Playfair Display', sans-serif;
+      }
+
+      .album-header span {
+        line-height: 0px;
+      }
+
+    .album-info-left {
+      float: left;
+      width: 58.33%;
+      box-sizing: border-box;
+    }
+
+      .album-section-header {
+        border-bottom: 1px solid #6c6c6c;
+        margin-bottom: 20px;
+        width: 95%;
+        height: 40px;
+      }
+
+      .album-track-list {
+        height: 400px;
+        overflow: auto;
+        width: 310px;
+        padding-left: 4px;
+      }
+
+        .album-track-list ol {
+          margin-top: 0px;
+          margin-bottom: 0px;
+          padding-right: 12px;
+          counter-reset: item;
+          padding-inline-start: 0px;
+        }
+
+          .album-track-list ol li {
+            display: block;
+          }
+
+            .album-track-list ol li:before {
+                content: counter(item) ". ";
+                counter-increment: item;
+                color: #6c6c6c;
+            }
+
+    .album-info-right {
+      float: right;
+      width: 41.66%;
+      box-sizing: border-box;
+      border-left: 0px;
+      height: 483px;
+    }
+
+      .album-info-rating {
+        box-sizing: border-box;
+        margin-bottom: 0px;
+        height: 186px;
+      }
+
+        .album-info-rating-section {
+          padding-left: 12px;
+          height: 40px;
+        }
+
+          .user-rating-div {
+            width: 50%;
+            height: 50px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+            .avg-rating {
+              font-size: 28px;
+            }
+
+            .out-of-5 {
+              letter-spacing: 3px;
+              padding-left: 2px;
+              color: #6c6c6c;
+            }
+
+          .user-like-div {
+            padding-top: 6px;
+            width: 50%;
+            height: 30px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+            .user-like-div span {
+              margin-left: 12px;
+            }
+
+              .album-info-right .fa-thumbs-up, .album-info-right .fa-thumbs-down {
+                background-color: #202020;
+                color: #ededed;
+                margin-left: 4px;
+              }
+
+          .review-btn-div {
+            padding-top: 8px;
+            width: 106px;
+            margin-left: auto;
+            margin-right: 65px;
+          }
+
+          .login-to-review {
+            text-align: center;
+            margin-top: 6px;
+            margin-right: 12px;
+          }
+
+      .album-info-other {
+        height: 290px;
+      }
+
+        .album-info-info {
+          padding-right: 12px;
+        }
+
+          .album-info-info div {
+            margin-bottom: 22px;
+          }
+
+            .album-info-info span {
+              font-size: 14px;
+              color: #6c6c6c;
+            }
+
+              .album-info-info .info-content {
+                float: right;
+                color: #ededed;
+                text-align: right !important;
+              }
+
+              .album-info-info .info-popularity-number {
+                font-size: 18px;
+                color: #ededed;
+              }
+
+            .info-content li {
+              text-align: right;
+              list-style: none;
+            }
+
+          .album-info-other ul {
+            margin-top: 0px;
+            margin-bottom: 0px;
+          }
+
+.album-reviews-main {
+  background-color: #202020;
+  padding-bottom: 20px;
+}
+
+  .reviews-section-header {
+    border-bottom: 1px solid #6c6c6c;
+    margin-bottom: 30px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+  }
+
+  .detail-reviews-container {
+    width: 960px;
+    margin: auto;
+    box-sizing: border-box;
+  }
+
+    .review-empty {
+      width: 90%;
+      margin: auto;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+    }
+
+    .review-empty span {
+      font-family: 'Playfair Display', sans-serif;
+      font-size: 14px;
+    }
+
+    .review-short {
+      margin: auto;
+      box-sizing: border-box;
+      border: 1px solid #6c6c6c;
+      margin-bottom: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      height: 200px;
+      background-color: #2a2a2a;
+    }
+
+      .review-short-header {
+        border-bottom: 1px solid #6c6c6c;
+        margin-bottom: 20px;
+        height: 40px;
+      }
+
+        .review-short-header .header-left {
+          font-size: 12px;
+        }
+
+          .review-short-header .header-left a {
+            font-weight: bold;
+            line-height: 62px;
+          }
+
+        .header-right {
+          float: right;
+        }
+
+          .review-short-header .header-right span {
+            font-size: 10px;
+            line-height: 66px;
+          }
+
+      .review-rating {
+        height: 40px;
+        padding-right: 20px;
+        width: 100%;
+        float: left;
+      }
+
+        .rating-left {
+          float: left;
+          width: 80%;
+        }
+
+          .rating-rating {
+            float: left;
+          }
+
+          .rating-like {
+            float: right;
+            padding-right: 266px;
+          }
+
+            .review-short .fa-thumbs-up, .review-short .fa-thumbs-down {
+              background-color: #2a2a2a;
+              color: #ededed;
+            }
+
+        .rating-right {
+          float: right;
+          width: 15%;
+          text-align: right;
+          padding-right: 0px;
+          line-height: 4px;
+          font-size: 14px;
+        }
+
+      .review-text {
+        word-wrap: break-word;
+        padding-right: 20px;
+        height: 120px;
+      }

@@ -1,0 +1,38 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/register.css' %}"/>
+
+<div class="register-div">
+  <div class="register-header">
+    <div class="header-left"">
+      <span>Create an Account</span>
+    </div>
+  </div>
+  <div class="register-errors">
+    {% if register_form.errors.username %}
+    <span class="error-span"><i>Invalid username.</i> Username can be no more than 150 characters and contain only letters, digits, and '@', '.', '+', '-', and '_' symbols.</span>
+    {% elif register_form.errors.email %}
+    <span class="error-span"><i>Invalid email address.</i> Email address is already in use.</span>
+    {% elif register_form.errors.password1 or register_form.errors.password2 %}
+    <span class="error-span"><i>Invalid password.</i> Password cannot have less than 8 characters, nor be commonly used, and cannot be entirely numeric.</span>
+    {% endif %}
+  </div>
+  <div class="register-form-div">
+    <form action="/accounts/register" method="post" autocomplete="off">
+      {% csrf_token %}
+      {{ register_form.as_p }}
+      <input type="submit" value="Register">
+    </form>
+  </div>
+  <div class="or-divider">
+    <span> or </span>
+  </div>
+  <div class="existing-account">
+    <span><a href="/accounts/login"><i>I already have an account</i></a></span>
+  </div>
+</div>
+
+{% endblock %}

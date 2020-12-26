@@ -1,0 +1,172 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/list_detail.css'%}"/>
+
+<!-- Hidden popup to search for albums to add to list -->
+<div class="form-popup" id="addAlbumForm">
+  <div class="close-div">
+    <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+  </div>
+  <div class="form-popup-header">
+    <div class="header-left">
+      <span>Add to List</span>
+    </div>
+  </div>
+  <form action="/accounts/{{ list_info.author }}/lists/{{ list_info.title_slug }}" method="post">
+    {% csrf_token %}
+    <div class="form-search-div">
+      <input type="text" name="album_name" autocomplete="off"/>
+      <input type="hidden" name="list_form" value="album_search" />
+    </div>
+    <div class="form-btn-div">
+      <button type="submit" id="submitSearchList">Search</button>
+    </div>
+  </form>
+</div>
+<!-- Hidden popup for deleting the list -->
+<div class="form-popup" id="deleteListForm">
+  <div class="close-div">
+    <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+  </div>
+  <div class="form-popup-header">
+    <div class="header-left">
+      <span>Delete List</span>
+    </div>
+  </div>
+  <p>Are you sure you want to delete this list?</p>
+  <form action="{{ list.id }}" method="post">
+    {% csrf_token%}
+    <input type="hidden" name="list_form" value="delete_list" />
+    <input type="hidden" name="list_id" value="{{ list_info.id }}" />
+    <div class="form-btn-div">
+      <button type="submit">Delete</button>
+    </div>
+  </form>
+</div>
+<!-- Hidden popup to display search results -->
+{% if results %}
+<div class="search-results-popup">
+  <div class="close-div">
+    <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+  </div>
+  <div class="form-popup-header">
+    <div class="header-left">
+      <span>Search Results</span>
+    </div>
+  </div>
+  <div class="results-for">
+    Showing results for "{{ search }}"
+  </div>
+  {% if results == "None" %}
+  <div>
+    <span>None</span>
+  </div>
+  {% else %}
+  <div class="list-albums">
+    {% for item in results %}
+    <div class="list-albums-box">
+      <div class="albums-box-img">
+        <a href="/albums/{{ item.album_id }}" >
+          {% if item.cover_art_url %}
+          <img class="albums-img" src="{{ item.cover_art_url }}"/>
+          {% else %}
+          <div class="albums-img-empty"></div>
+          {% endif %}
+        </a>
+      </div>
+      <div class="albums-box-info">
+        <i>{{ item.album }}</i> by <a href="/artists/{{ item.artist_id }}">{{ item.artist }}</a>
+      </div>
+      <form action="{{ list.id }}" method="post" name="{{ item.album_id }}">
+        {% csrf_token %}
+        <input type="hidden" name="list_form" value="add_album" />
+        <input type="hidden" name="album_id" value="{{ item.album_id }}" />
+        <input type="hidden" name="album_name" value="{{ item.album }}" />
+        <input type="hidden" name="artist_id" value="{{ item.artist_id }}" />
+        <input type="hidden" name="artist_name" value="{{ item.artist }}" />
+        <input type="hidden" name="cover_art_url" value="{{ item.cover_art_url }}" />
+        <div class="add-btn-div">
+          <button type="submit" class="addAlbumBtn" value="{{ item.album_id }}"><i class="fas fa-plus-square"></i></button>
+        </div>
+      </form>
+    </div>
+    {% endfor%}
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+<!-- List details (author, date, description) and list of all albums in user's list -->
+<div class="page-header">
+  <h1 id="listTitle">{{ list_info.title }}</h1>
+</div>
+<div class="list-container">
+  <div class="list-section-header">
+    <div class="header-left">
+      <span>Created by <a href="/accounts/{{ list_info.author }}">{{ list_info.author }}</a></span>
+    </div>
+    <div class="header-right">
+      <span>{{ list_info.date }}</span>
+    </div>
+  </div>
+  <div class="list-description">
+    <div class="list-description-left">
+      <span>{{ list_info.description }}</span>
+    </div>
+    <div class="list-description-right">
+      <!-- Button to search for albums and button to delete list -->
+      {% if my_profile %}
+      <button type="submit" id="displaySearchList"><i class="fas fa-search-plus"></i></button>
+      <button type="submit" id="displayDeleteList"><i class="fas fa-trash-alt"></i></button>
+      <div>
+        <a href="/accounts/{{ list_info.author }}/lists"><i>See my other lists</i></a>
+      </div>
+      {% else %}
+      <div>
+        <a href="/accounts/{{ list_info.author }}/lists"><i>See other lists by this user</i></a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="list-albums">
+  {% if list_albums %}
+    {% for album in list_albums %}
+    <div class="list-albums-box">
+      <div class="albums-box-img">
+        <a href="/albums/{{ album.album_id }}">
+          <img class="albums-img" src="{{ album.cover_art_url }}"/>
+        </a>
+      </div>
+      <div class="albums-box-info">
+        <i>{{ album.name }}</i> by <a href="/artists/{{ album.artist_id }}">{{ album.artist }}</a>
+      </div>
+      {% if my_profile %}
+      <div class="remove-btn-div">
+        <form action="/accounts/{{ list_info.author }}/lists/{{ list_info.title_slug }}" method="post">
+        {% csrf_token %}
+          <input type="hidden" name="list_form" value="remove_album" />
+          <input type="hidden" name="album_id" value="{{ album.album_id }}" />
+          <button type="submit"><i class="fas fa-minus-square"></i></button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="list-empty">
+      {% if my_profile %}
+      <span>Your list currently has no albums.</span>
+      {% else %}
+      <span>This list currently has no albums.</span>
+      {% endif %}
+    </div>
+  {% endif %}
+  </div>
+</div>
+
+{% load static %}
+<script src="{% static 'accounts/js/list_detail.js' %}"></script>
+
+{% endblock %}

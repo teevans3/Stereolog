@@ -1,0 +1,210 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/css/review_detail.css'%}"/>
+
+<!-- Hidden popup for editing user's review -->
+<div class="form-popup" id="editForm">
+  <div class="close-div">
+    <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+  </div>
+  <div class="form-popup-header">
+    <div class="header-left">
+      <span>Edit Review</span>
+    </div>
+  </div>
+  <form action="/accounts/{{ full_review.author }}/reviews/{{ full_review.album_id }}" method="post"  class="form-container" name="editForm">
+    {% csrf_token %}
+    <input type="hidden" name="review_form" value="edit_review" />
+    <input type="hidden" name="review_id" value="{{ full_review.id }}" />
+    <div class="form-like-rating-div">
+      <!-- Review rating out of 5 stars -->
+      <div class="form-rating-div">
+        <span>Rating</span>
+        <fieldset class="rating">
+            <input type="radio" id="5.0" name="rating" value="5.0" /><label class="full" for="5.0" title="5 stars"></label>
+            <input type="radio" id="4.5" name="rating" value="4.5" /><label class="half" for="4.5" title="4.5 stars"></label>
+            <input type="radio" id="4.0" name="rating" value="4.0" /><label class="full" for="4.0" title="4 stars"></label>
+            <input type="radio" id="3.5" name="rating" value="3.5" /><label class="half" for="3.5" title="stars"></label>
+            <input type="radio" id="3.0" name="rating" value="3.0" /><label class="full" for="3.0" title="3 stars"></label>
+            <input type="radio" id="2.5" name="rating" value="2.5" /><label class="half" for="2.5" title="2.5 stars"></label>
+            <input type="radio" id="2.0" name="rating" value="2.0" /><label class="full" for="2.0" title="2 stars"></label>
+            <input type="radio" id="1.5" name="rating" value="1.5" /><label class="half" for="1.5" title="1.5 stars"></label>
+            <input type="radio" id="1.0" name="rating" value="1.0" /><label class="full" for="1.0" title="1 star"></label>
+            <input type="radio" id="0.5" name="rating" value="0.5" /><label class="half" for="0.5" title="0.5 stars"></label>
+        </fieldset>
+      </div>
+      <div class="form-like-div">
+        <span>Like</span>
+        <div>
+          <input type="radio" name="like" id="yes" value="YES">
+          <label for="yes"><i class="fas fa-thumbs-up form-thumbs-up"></i></label>
+          <input type="radio" name="like" id="no" value="NO" class="fas">
+          <label for="no"><i class="fas fa-thumbs-down form-thumbs-down"></i></label>
+        </div>
+      </div>
+    </div>
+    <div class="form-review-div">
+      <textarea type="text" name="review" autocomplete="off"></textarea>
+    </div>
+    <div class="form-btn-div">
+      <button type="submit" id="submitEdit">Save</button>
+    </div>
+  </form>
+</div>
+<!-- Hidden popup for deleting user's review -->
+<div class="form-popup" id="deleteForm">
+  <div class="close-div">
+    <button type="submit" class="close-popup"><i class="fas fa-window-close"></i></button>
+  </div>
+  <div class="form-popup-header">
+    <div class="header-left">
+      <span>Delete Review</span>
+    </div>
+  </div>
+  <p>Are you sure you want to delete this review?</p>
+  <form action="/accounts/{{ full_review.author }}/reviews/{{ full_review.album_id }}" method="post">
+  {% csrf_token %}
+    <input type="hidden" name="review_form" value="delete_review" />
+    <input type="hidden" name="review_id" value="{{ full_review.id }}" />
+    <div class="form-btn-div">
+      <button type="submit">Delete</button>
+    </div>
+  </form>
+</div>
+<!-- Review detail: album picture on left, full review info on right (rating, like, review)-->
+<div class="full-review-div">
+  <div class="review-detail-left">
+    <div class="albums-box-img">
+      <a href="/albums/{{ full_review.album_id }}" >
+        {% if full_review.cover_art_url %}
+        <img class="albums-img" src="{{ full_review.cover_art_url }}"/>
+        {% else %}
+        <div class="albums-img-empty"></div>
+        {% endif %}
+      </a>
+    </div>
+    <div class="albums-box-info">
+      <i>{{ full_review.album }}</i> by <a href="/artists/{{ full_review.artist_id }}">{{ full_review.artist }}</a>
+    </div>
+  </div>
+  <div class="review-detail-right">
+    <div class="review-header">
+      <h1>{{ full_review.album }}</h1>
+    </div>
+    <div class="review-section-header">
+      <div class="header-left">
+        <span>Review by <a href="/accounts/{{ full_review.author }}" class="review-author">{{ full_review.author }}</a></span>
+      </div>
+      <div class="header-right">
+        <span>{{ full_review.date }}</span>
+      </div>
+    </div>
+    <div class="review-rating">
+      <div class="rating-left">
+        <!-- Review rating out of 5 stars -->
+        <div class="rating-rating">
+          {% if full_review.rating == "0.5" %}
+          <i class="fas fa-star-half star-half"></i>
+          <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "1.0" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "1.5" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star-half star-half"></i>
+          <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "2.0" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "2.5" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star-half star-half"></i>
+          <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "3.0" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "3.5" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star-half star-half"></i>
+          <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "4.0" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-empty"></i>
+          {% elif full_review.rating == "4.5" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star-half star-half"></i>
+          <i class="fas fa-star-half fa-flip-horizontal star-half-empty"></i>
+          {% elif full_review.rating == "5.0" %}
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          <i class="fas fa-star star-full"></i>
+          {% endif %}
+        </div>
+        <div class="rating-like">
+          {% if full_review.like == "YES" %}
+          <i class="fas fa-thumbs-up"></i>
+          {% else %}
+          <i class="fas fa-thumbs-down"></i>
+          {% endif %}
+        </div>
+      </div>
+      <div class="rating-right">
+        <!-- Buttons for a user to edit or delete their review -->
+        {% if my_profile %}
+        <div class="edit-delete-btn-div">
+          <button type="submit" id="displayEdit"><i class="fas fa-edit"></i></button>
+          <button type="submit" id ="displayDelete"><i class="fas fa-trash-alt"></i></button>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="review-text">
+      {{ full_review.text }}
+    </div>
+    <div class="other-reviews">
+      {% if my_profile %}
+        <a href="/accounts/{{ full_review.author }}/reviews"><i>See your other reviews</i></a>
+      {% else %}
+        <a href="/accounts/{{ full_review.author }}/reviews"><i>See other reviews by this user</i></a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% load static %}
+<script src="{% static 'accounts/js/review_detail.js' %}"></script>
+
+{% endblock %}
